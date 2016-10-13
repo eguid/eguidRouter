@@ -29,7 +29,7 @@ var resStatic = function(req, res, pathName) {
 var endStaticReq = function(res, pathName, data) {
     var suffix = path.extname(pathName);
     res.writeHead(200, { 'Content-Type': suffix === ".css" ? 'text/css' : 'text/html;' + 'charset=utf-8' });
-    res.write(data.toString());
+    res.write(data);
 };
 //结束错误请求
 var endErrorReq = function(res, err) {
@@ -66,11 +66,16 @@ var setIndex = function(newUrl, oldUrl) {
     addDynamicRoute(newUrl, function(req, res) {
         resStatic(req, res, oldUrl);
     });
+};
+/**自定义静态页面处理方式 staticHandlerService=function(req,res,pathName)*/
+var setresStaticFunc = function(staticHandlerService) {
+    resStatic = staticHandlerService;
 }
 exports.route = routeHandler;
 exports.add = addDynamicRoute;
 exports.start = startServer;
 exports.index = setIndex;
+exports.modStatic = setresStaticFunc;
 /**
  * eguidRouter快速路由(感受原生的API的如丝般顺滑)
  * 功能实现：
