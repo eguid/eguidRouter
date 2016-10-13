@@ -12,6 +12,10 @@ Simple, flexible and fast 'nodeJS' routing function（一个非常简单、灵�
   
 `//添加动态路由，/getNowTime请求会自动调用上面定义的getNowTime方法`  
 `eguid.add("/getNowTime", service.getNowTime);`  
+  
+  
+`//自定义静态资源处理方式`  
+`eguid.modStatic(function(req,res,pathName){...});`  
 
 `//设置静态请求的别名，设置首页 `   
 `eguid.index('/', '/index.html');`  
