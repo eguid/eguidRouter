@@ -25,5 +25,5 @@ Simple, flexible and fast 'nodeJS' routing function（一个非常简单、灵�
 
 `eguid.index('/helloWorld', '/index.html');`  
 
-`//监听8081端口`  
-`eguid.start(8081);`
+`//监听8081端口，开启4个进程`  
+`eguid.start(8081,4);`
