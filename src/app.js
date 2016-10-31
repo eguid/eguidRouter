@@ -1,36 +1,20 @@
-var eguid = require("./eguid");
-
-eguid.add('get', "/getNowTime", function(req, res, pathName) {
-    res.end("hello 1!");
+﻿//这是nodejs后端入口程序
+//该入口用于定义路由选择器对应的service服务，以JS数组对象进行定义
+var eguid=require("./route/eguid-0.3.js");
+eguid.add('GET','/',function(req,res,pathName){
+res.end('hello world!');
 });
-//上面的等同于这个
-eguid.get('/getNowTime', function(req, res, pathName) {
-    res.end("hello 2!");
+eguid.get('/index',function(req,res,pathName){
+res.end('hello index world!');
 });
-eguid.post('/getNowTime', function(req, res, pathName) {
-    res.end("hello 3!");
+eguid.post('/hello1',function(req,res,pathName){
+res.end('hello 1 world!');
 });
-eguid.put('/getNowTime', function(req, res, pathName) {
-    res.end("hello 4!");
+eguid.delete('/hello2',function(req,res,pathName){
+res.end('hello 2 world!');
 });
-eguid.delete('/getNowTime', function(req, res, pathName) {
-    res.end("hello 5!");
+eguid.put('/hello4',function(req,res,pathName){
+res.end('hello 4 world!');
 });
-//请求过滤器
-eguid.setFilter(function(req, res, pathName, methodName) {
-    console.log("进入自定义过滤器1");
-    //拦截请求
-    if (pathName == '/') {
-        res.end('hello world!');
-        return;
-    }
-    //继续请求处理
-    eguid.continue(req, res, pathName, methodName);
-    console.log("退出自定义过滤器2");
-});
-//设置静态请求的别名，设置首页
-eguid.index('/', '/index.html');
-//设置原始页面别名打开，/helloWolrd请求打开的是index.html页面
-eguid.index('/index', '/index.html');
-//监听8081端口，多线程数量
-eguid.start(8081);
+eguid.index('/world','/index.html');
+eguid.start(8081,1);
